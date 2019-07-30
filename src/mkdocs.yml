@@ -1,6 +1,6 @@
 site_name: ProtoSmasher Docs
-repo_name: 'infernal-software/protosmasher-documentation'
-repo_url: 'https://github.com/Infernal-Software/ProtoSmasher-Documentation'
+repo_name: 'infernal-software/protosmasher-docs'
+repo_url: 'https://github.com/Infernal-Software/ProtoSmasher-Docs'
 
 theme:
   name: 'material'
