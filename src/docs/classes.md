@@ -1,10 +1,12 @@
 # Classes
 
 ## Base
-Side note: every class inherits functions and properties from this class.
 - bool Visible
 - int ZIndex
 - void Remove()
+
+!!! note
+    every class inherits functions and properties from this class.
 
 ## Line
 - Vector2 From
