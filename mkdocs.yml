@@ -1,0 +1,16 @@
+site_name: ProtoSmasher Docs
+repo_name: 'infernal-software/protosmasher-documentation'
+repo_url: 'https://github.com/Infernal-Software/ProtoSmasher-Documentation'
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'red'
+    accent: 'red'
+  font:
+    text: 'Ubuntu'
+    code: 'Ubuntu Mono'
+
+markdown_extensions:
+  - codehilite
+  - admonition
