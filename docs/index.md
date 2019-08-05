@@ -14,6 +14,3 @@ Though with these changes it makes it a little bit harder for us ato execute Lua
 
 !!! note
     This is a new additional to ROBLOX
-
-## FAQ
-TODO: put some FAQ here.
