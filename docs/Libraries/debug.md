@@ -12,12 +12,12 @@ void debug.setmetatable(Variant object, table mt)
 ```
 Sets the metatable for the given object to the given table. (mt can be nil)
 
-## Getfenv
+## Get Function Environment
 ```lua
 table debug.getfenv(Variant object)
 ```
 
-## Setfenv
+## Set Function Environment
 ```lua
 Variant debug.setfenv(Variant object, table env)
 ```
@@ -47,7 +47,7 @@ variant debug.setlocal(int stackIndex, string localName, Variant value)
 ```
 Sets the value of a local from the selected stack based on the name. Returns boolean "true" on success.
 
-## Getupvalue
+## Get Upvalue
 ```lua
 variant debug.getupvalue(Variant<int, function> container, string upvalName)
 ```
