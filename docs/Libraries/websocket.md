@@ -6,7 +6,7 @@
 ```lua
 variant WebSocket.new(string Address)
 ```
-Creates a new WebSocket object pointing at the given address and returns it.
+Creates a new WebSocket object pointing at the given address and returns it. wss:// will crash at the moment, just use ws:// until slappy fixes it.
 
 ## Class Methods
 
