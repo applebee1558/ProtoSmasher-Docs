@@ -10,24 +10,25 @@ Returns the registry table.
 ```lua
 void debug.setmetatable(Variant object, table mt)
 ```
-Sets the metatable for the given object to the given table. (mt can be nil)
+Sets the metatable for the given object to the given table. (`mt` can be nil)
 
 ## Get Function Environment
 ```lua
 table debug.getfenv(Variant object)
 ```
+Returns the function environment of `object`.
 
 ## Set Function Environment
 ```lua
 Variant debug.setfenv(Variant object, table env)
 ```
-Sets the environment of the given object, returns object.
+Sets the function environment of `object`, returns `object`.
 
 ## Get Metatable
 ```lua
 table debug.getmetatable(Variant object)
 ```
-Returns the metatable of given object. (functions exactly like getrawmetatable)
+Returns the metatable of given object. (functions exactly like `getrawmetatable`)
 
 ## Get Local
 ```lua
@@ -45,7 +46,7 @@ Returns a table of all locals from the selected stack.
 ```lua
 variant debug.setlocal(int stackIndex, string localName, Variant value)
 ```
-Sets the value of a local from the selected stack based on the name. Returns boolean "true" on success.
+Sets the value of a local from the selected stack based on the name. Returns boolean `true` on success.
 
 ## Get Upvalue
 ```lua
@@ -69,28 +70,28 @@ Sets the value of the upvalue from the selected container based on the name. Ret
 ```lua
 table<variant> debug.getconstants(Variant<int, function> f)
 ```
-Return's the constants of the given function. Function must be a lua function.
+Return's the constants of the given function. `f` must be a Lua function.
 
 ## Set Constant
 ```lua
 void debug.setconstant(function f, int index, variant val)
 ```
-Set's the constant at the given index for the given function. Index's are 1-based. Function must be a lua function.
+Set's the constant at the given index for the given function. Index's are 1-based. `f` must be a Lua function.
 
 ## Upvalue ID
 ```lua
 userdata debug.upvalueid(function f, int n)
 ```
-Returns an unique identifier (as a light userdata) for the upvalue numbered n from the given function. These unique identifiers allow a program to check whether different closures share upvalues. Lua closures that share an upvalue (that is, that access a same external local variable) will return identical ids for those upvalue indices.
+Returns an unique identifier (as a light userdata) for the upvalue numbered `n` from the function `f`. These unique identifiers allow a program to check whether different closures share upvalues. Lua closures that share an upvalue (that is, that access a same external local variable) will return identical ids for those upvalue indices.
 
 ## Upvalue Join
 ```lua
 void debug.upvaluejoin(function f1, int n1, function f2, int n2)
 ```
-Make the n1-th upvalue of the Lua closure f1 refer to the n2-th upvalue of the Lua closure f2.
+Make the `n1`-th upvalue of the Lua closure `f1` refer to the `n2`-th upvalue of the Lua closure `f2`.
 
 ## Upvalue Name
 ```lua
 string debug.upvaluename(function f, int n)
 ```
-Returns the name for the upvalue numbered n from the given function. Will return an empty string on C closures.
+Returns the name for the upvalue numbered `n` from the given function. Will return an empty string on C closures.

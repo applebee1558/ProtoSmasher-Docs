@@ -1,6 +1,6 @@
 # Constants
 !!! note 
-    None of these variables can be changed in the environment
+    None of the following variables can be changed within the environment.
 
 ## ProtoSmasher Loaded
 ``` lua

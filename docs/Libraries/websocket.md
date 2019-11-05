@@ -1,5 +1,3 @@
-
-
 # WebSocket
 
 #### Initializing
