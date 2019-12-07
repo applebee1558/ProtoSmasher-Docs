@@ -10,25 +10,25 @@ Returns the input as a bit number? (in my testing it just returns the number wit
 ```lua
 int bit.bnot(int num)
 ```
-Performs a bit negate on the input.
+Performs a bitwise NOT operation on the input.
 
 ## Binary AND
 ```lua
 int bit.band(int n1, int n2)
 ```
-Performs a bit and operation on the given inputs.
+Performs a bitwise AND operation on the given inputs.
 
 ## Binary OR
 ```lua
 int bit.bor(int n1, int n2)
 ```
-Performs a bit or operation on the given inputs.
+Performs a wise OR operation on the given inputs.
 
 ## Binary xor
 ```lua
 int bit.bxor(int n1, int n2)
 ```
-Performs a bit xor operation on the given inputs.
+Performs a bitwise XOR operation on the given inputs.
 
 ## Binary Left Shift
 ```lua

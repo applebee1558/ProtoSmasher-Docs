@@ -27,20 +27,24 @@ void Input.ScrollMouse(int ScrollAmount)
 !!! note "The amount is negative for up, positive for down."
 Scrolls the mouse by the given amount.
 
+
+!!! note "Key Codes"
+    Key codes can be found [here](https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731)
+
 ## Key Press
 ```lua
 void Input.KeyPress(int VirtualKeyCode)
 ```
-Performs a key press of the given key when called. Key codes can be found here.
+Performs a key press of the given key when called.
 
 ## Key Down
 ```lua
 void Input.KeyDown(int VirtualKeyCode)
 ```
-"Holds" a key down when called. Key codes can be found here.
+"Holds" a key down when called.
 
 ## Key Up
 ```lua
 void Input.KeyUp(int VirtualKeyCode)
 ```
-"Releases" a key when called. Key codes can be found here.
+Releases a key when called.

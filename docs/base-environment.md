@@ -6,18 +6,18 @@ table getgenv()
 ```
 Returns the global environment table for ProtoSmasher.
 
-## Get ROBLOX Environment
+## Get Roblox Environment
 ```lua
 table getrenv()
 ```
-Returns the table of all ROBLOX globals.
+Returns the table of all Roblox globals.
 
 ## Get Raw Metatable
 ```lua
 table getrawmetatable(variant<Userdata, string, table> object)
 ```
 Returns the metatable of the passed object, ignores the __metatable metafield.
-Object could be locked, check is is_readonly, and is_writeable, or change with make_readonly and make_writable
+The object could be locked, to check use `is_readonly` or `is_writeable`, and change accordingly with `make_writeable` or `make_readonly`
 
 ## Get Script Environment
 ```lua
@@ -41,7 +41,7 @@ Returns a table of all scripts and their global environments. (key = script, val
 ```lua
 variant<function, (nil, string)> loadstring(string sourceCode, string chunkName = "@(Random String)")
 ```
-Converts plain lua source code into a function. Returns nil and a string on error. Will follow the set execution method.
+Converts plain Lua source code into a function. Returns nil and a string on error. Will follow the set execution method.
 
 ## Loadfile
 ```lua
@@ -53,7 +53,7 @@ Returns a function from the file, the equivalent of "loadstring(readfile(filePat
 ```lua
 function dofile(string filePath)
 ```
-Executes the lua source code from the file, the equivalent of "loadstring(readfile(filePath))()", Will follow the set execution method.
+Executes the Lua source code from the file, the equivalent of "loadstring(readfile(filePath))()", Will follow the set execution method.
 
 ## Make Writeable
 ```lua
@@ -71,19 +71,19 @@ Changes the readonly flag of a table.
 ```lua
 bool is_writeable(table tbl)
 ```
-Returns weather or not the table is writeable.
+Returns whether or not the table is writeable.
 
 ## Is Readonly
 ```lua
 bool is_readonly(table tbl)
 ```
-Returns weather or not the table is read only.
+Returns whether or not the table is read only.
 
 ## Is ProtoSmasher Caller
 ```lua
 boolean is_protosmasher_caller(<none>)
 ```
-This checks if the current caller is a protosmasher thread. (used internally for getobjects)
+This checks if the current caller is a ProtoSmasher thread. (used internally for getobjects)
 
 ## Is ProtoSmasher Closure
 ```lua
@@ -101,7 +101,7 @@ Internal function used by ProtoSmasher for DataModel::GetObjects.
 ```lua
 table<Object> get_nil_instances(<none>)
 ```
-Returns all nil parented instances from the localscript state.
+Returns all nil parented instances from the LocalScript state.
 
 ## Get Thread Context
 ```lua
@@ -113,7 +113,7 @@ Returns the current context of the caller.
 ```lua
 string dump_function(function f)
 ```
-Returns the regular lua bytecode of the given function.
+Returns the regular Lua bytecode of the given function.
 
 ## Get Script Function
 ```lua
@@ -125,19 +125,19 @@ Returns a function of the script (cannot be called but can be passed to dump_fun
 ```lua
 string bytecode_to_lua(string byteCode)
 ```
-Used to convert lua 5.1 bytecode into lua sourcecode (requires unluac.jar in workspace and java be installed)
+Used to convert Lua 5.1 bytecode into Lua source code (requires unluac.jar in workspace and Java be installed)
 
 ## Write File
 ```lua
 void writefile(string filePath, string contentsToWrite, boolean isBinary = false)
 ```
-Writes the contents of "contentsToWrite" to the provided file (sandboxed to workspace).
+Writes the contents of `contentsToWrite` to the provided file (sandboxed to workspace).
 
 ## Read File
 ```lua
 string readfile(string pathToFile)
 ```
-Returns the files contents (sandboxed to workspace).
+Returns the contents of the file at `pathToFile` (sandboxed to workspace).
 
 ## Decompile
 ```lua
@@ -149,13 +149,13 @@ Returns the decompiled source code of a script or function. (if you want bytecod
 ```lua
 void setclipboard(string strToCopy)
 ```
-Sets the clipboard text to the contents of strToCopy
+Sets the clipboard text to `strToCopy`
 
 ## Pebc Create
 ```lua
 string pebc_create(function toEncrypt)
 ```
-Returns ProtoSmasher Encrypted Bytecode (TM) of the given function (can only be used by people i select, otherwise it will just throw an error.)
+Returns ProtoSmasher Encrypted Bytecode (TM) of the given function (can only be used by people I select, otherwise it will just throw an error.)
 
 ## Pebc Load
 ```lua
@@ -167,7 +167,7 @@ Loads ProtoSmasher Encrypted Bytecode (TM) and returns it in a function form.
 ```lua
 void saveinstance(Object instanceToSave, string fileName, bool enableScriptDecompiling)
 ```
-Converts the given instance into roblox's xml instance format and saves it to the saved under the given file name. When enableScriptDecompiling is enabled it will automatically decompile any modulescript or localscript it encounters.
+Converts the given instance into Roblox's XML instance format and saves it to the saved under the given file name. When `enableScriptDecompiling` is true it will automatically decompile any ModuleScript or LocalScript it encounters.
 
 ## Disconnect all
 ```lua
@@ -197,13 +197,13 @@ Return a table of everything thats connected to RenderStep via BindToRenderStepE
 ```lua
 bool setfflag(string flag, string value)
 ```
- Set's the value of an FFlag and returns whether it was successfully set or not. Click here to view most if not all FFlags for the client.
+ Set's the value of an FFlag and returns whether it was successfully set or not. Click [here](https://clientsettings.api.roblox.com/Setting/QuietGet/ClientAppSettings/?apiKey=D6925E56-BFB9-4908-AAA2-A5B1EC4B2D79) to view most if not all FFlags for the client.
 
 ## Debugger Manager
 ```lua
 Object<DebuggerManager> DebuggerManager(<none>)
 ```
- Returns the object interface for ROBLOX's script debugger. You can view its documentation here
+ Returns the object interface for Roblox's script debugger. You can view its documentation [here](http://robloxdev.com/api-reference/class/DebuggerManager)
 
 ## Get Calling Script
 ```lua
@@ -233,7 +233,7 @@ Returns a table populated with all loaded ModuleScript's in the game. Automatica
 ```lua
 void detour_function(function f, function detour, bool ignoreSizeChecks = false)
 ```
-Detour's the given function to the passed detour function, meaning everytime the function is called, your function will be called instead. This replaces the function and therfore does not change the value of tostringing it. Detour functions that are lua will have a new global variable called 'original_function' that you can call to use to call the original function like before it was detoured. Will error if the detour function is larger than the original function, size increases are caused by upvalues. The parameter "ignoreSizeChecks" will not throw an error if the detour function is bigger than the function to be detoured. This can cause a crash and should be used with caution.
+Detours the function `f` to the passed function `detour`, meaning everytime the function is called, your function will be called instead. This replaces the function itself, thus calling `tostring` on it will return the same value. Detour functions that are Lua will have a new global variable called `original_function` that you can call to call the original function. Will error if the detour function is larger than the original function, size increases are caused by upvalues. The parameter `ignoreSizeChecks` will not throw an error if the detour function is bigger than the function to be detoured. This can cause a crash and should be used with caution.
 
 ## Parse URL
 ```lua
@@ -245,19 +245,19 @@ Returns a table populated with various information about the passed url. Current
 ```lua
 string get_script_bytecode(Object<ModuleScript, LocalScript> script)
 ```
-Returns the given script's bytecode in regular lua format. This is similar to dump_function combined with get_script_function, but this is more efficient.
+Returns the given script's bytecode in regular Lua format. This is similar to `dump_function` combined with `get_script_function`, but this is more efficient.
 
 ## Get Hidden GUI
 ```lua
 Object get_hidden_gui(<none>)
 ```
-Returns a Instance you can use parent Gui's to. Anything in here will be undetectable from things like CoreGui checks and such.
+Returns a Instance you can use parent GUIs to. Anything in here will be undetectable from things like CoreGui checks and such.
 
 ## Get GC Objects
 ```lua
 array<Variant> get_gc_objects(<none>)
 ```
-Returns a table containing most of the objects that exist in the current lua state.
+Returns a table containing most of the objects that exist in the current Lua state.
 
 ## Click Detector
 ```lua
@@ -281,4 +281,4 @@ Returns a boolean that indicates whether or not the functions internally call th
 ```lua
 void appendfile(string filePath, string contentsToWrite, boolean isBinary = false)
 ```
-Appends the contents of "contentsToWrite" to the end of the provided file (sandboxed to workspace).
+Appends the contents of `contentsToWrite` to the end of the file at `filePath` (sandboxed to workspace).
