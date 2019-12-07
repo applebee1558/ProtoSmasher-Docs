@@ -24,6 +24,7 @@ jobs:
         pip install mkdocs mkdocs-material
     - name: Deploy to github pages        
       run: |
-        git config --local user.email "action@github.com"
+        git remote -v
+        git config --local user.email "action@github.com" 
         git config --local user.name "MkDocs Deployer"
         mkdocs gh-deploy
