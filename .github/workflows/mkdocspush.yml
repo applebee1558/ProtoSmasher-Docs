@@ -37,6 +37,7 @@ jobs:
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./site
         SCRIPT_MODE: true
+        GITHUB_ACTOR: Deploy Bot
       run: |
         wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
         bash ./entrypoint.sh
