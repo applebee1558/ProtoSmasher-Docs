@@ -143,7 +143,7 @@ Returns the contents of the file at `pathToFile` (sandboxed to workspace).
 ```lua
 string decompile(variant<Object, function> obj, string optionalArg = nil)
 ```
-Returns the decompiled source code of a script or function. (if you want bytecode put optionalArg as "dumponly")
+Returns the decompiled source code of a script or function. (if you want bytecode put optionalArg as "dumponly"). Currently broken as decompiling doesn't exist in the new Lua U VM.
 
 ## Set Clipboard
 ```lua
@@ -167,7 +167,7 @@ Loads ProtoSmasher Encrypted Bytecode (TM) and returns it in a function form.
 ```lua
 void saveinstance(Object instanceToSave, string fileName, bool enableScriptDecompiling)
 ```
-Converts the given instance into Roblox's XML instance format and saves it to the saved under the given file name. When `enableScriptDecompiling` is true it will automatically decompile any ModuleScript or LocalScript it encounters.
+Converts the given instance into Roblox's XML instance format and saves it to the saved under the given file name. When `enableScriptDecompiling` is true it will automatically decompile any ModuleScript or LocalScript it encounters. Decompiling won't work with the new Lua U VM so don't set it to true.
 
 ## Disconnect all
 ```lua
@@ -179,7 +179,7 @@ Disconnects all connections from a given signal. (should note this might not wor
 ```lua
 void unlock_modulescript(Object<ModuleScript> signal)
 ```
-Unlocks a given ModuleScript so it can be required via ProtoSmasher (Used by require now)
+Unlocks a given ModuleScript so it can be required via ProtoSmasher (Used by require function now)
 
 ## Print Output
 ```lua
