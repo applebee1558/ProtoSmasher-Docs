@@ -213,7 +213,7 @@ Returns the script object from the specificed stack level.
 
 ## Protect Function
 ```lua
-function protect_function(function f)
+function protect_function(function f, bool yield = true)
 ```
 Returns a proxy function that will aide in making the function undetectable via stack trace errors. Function must be a ProtoSmasher closure.
 
