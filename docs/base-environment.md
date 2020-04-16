@@ -109,6 +109,12 @@ int get_thread_context(<none>)
 ```
 Returns the current context of the caller.
 
+## Set Thread Context
+```lua
+void set_thread_context(int level)
+```
+Sets the context to the level provided.
+
 ## Dump Function
 ```lua
 string dump_function(function f)
@@ -143,19 +149,15 @@ Returns the contents of the file at `pathToFile` (sandboxed to workspace).
 ```lua
 string decompile(variant<Object, function> obj, string optionalArg = nil)
 ```
-Returns the decompiled source code of a script or function. (if you want bytecode put optionalArg as "dumponly"). Currently broken as decompiling doesn't exist in the new Lua U VM.
+Returns the decompiled source code of a script or function. (If you want bytecode put optionalArg as "dumponly"). 
+!!! warning
+ Currently broken as decompiling scripts with ProtoSmasher doesn't exist in the new Lua U VM.
 
 ## Set Clipboard
 ```lua
 void setclipboard(string strToCopy)
 ```
 Sets the clipboard text to `strToCopy`
-
-## Pebc Create
-```lua
-string pebc_create(function toEncrypt)
-```
-Returns ProtoSmasher Encrypted Bytecode (TM) of the given function (can only be used by people I select, otherwise it will just throw an error.)
 
 ## Pebc Load
 ```lua
@@ -167,13 +169,27 @@ Loads ProtoSmasher Encrypted Bytecode (TM) and returns it in a function form.
 ```lua
 void saveinstance(Object instanceToSave, string fileName, bool enableScriptDecompiling)
 ```
-Converts the given instance into Roblox's XML instance format and saves it to the saved under the given file name. When `enableScriptDecompiling` is true it will automatically decompile any ModuleScript or LocalScript it encounters. Decompiling won't work with the new Lua U VM so don't set it to true.
+Converts the given instance into Roblox's XML instance format and saves it to the saved under the given file name. When `enableScriptDecompiling` is true it will automatically decompile any ModuleScript or LocalScript it encounters. 
+!!! warning 
+ Decompiling won't work with the new Lua U VM so don't set it to true.
+!!! note
+  If you want to save the entire game, you have to do game:GetChildren() and not just the global itself.
+!!! example
+ If you do not know much about programming and function arguments, you can use this to save the entire game. ```lua
+ saveinstance(game:GetChildren() "filename", false)```
+
 
 ## Disconnect all
 ```lua
 void disconnect_all(RBXScriptSignal signal)
 ```
 Disconnects all connections from a given signal. (should note this might not work for events on datamodel, same for get_signal_connections)
+
+#Get Signal Connections
+```lua
+array<RBXScriptConnection> get_signal_cons(RBXScriptSignal signal)
+```
+Returns an array with all the connections of the given signal. Expected instability with this function, should work fine though.
 
 ## Unlock Modulescript
 ```lua
@@ -233,7 +249,7 @@ Returns a table populated with all loaded ModuleScript's in the game. Automatica
 ```lua
 void detour_function(function f, function detour, bool ignoreSizeChecks = false)
 ```
-Detours the function `f` to the passed function `detour`, meaning everytime the function is called, your function will be called instead. This replaces the function itself, thus calling `tostring` on it will return the same value. Detour functions that are Lua will have a new global variable called `original_function` that you can call to call the original function. Will error if the detour function is larger than the original function, size increases are caused by upvalues. The parameter `ignoreSizeChecks` will not throw an error if the detour function is bigger than the function to be detoured. This can cause a crash and should be used with caution.
+Detours the function `f` to the passed function `detour`, meaning everytime the function is called, your function will be called instead. This replaces the function itself, thus calling `tostring` on it will return the same value. Detour functions that are Lua will have a new global variable called `original_function` that you can call to call the original function. The original function would also be returned. Will error if the detour function is larger than the original function, size increases are caused by upvalues. The parameter `ignoreSizeChecks` will not throw an error if the detour function is bigger than the function to be detoured. This can cause a crash and should be used with caution.
 
 ## Parse URL
 ```lua
@@ -282,3 +298,74 @@ Returns a boolean that indicates whether or not the functions internally call th
 void appendfile(string filePath, string contentsToWrite, boolean isBinary = false)
 ```
 Appends the contents of `contentsToWrite` to the end of the file at `filePath` (sandboxed to workspace).
+
+## Fake Touch
+```lua
+void fake_touch(Object part1, Object part2, bool touch)
+```
+Fires the touched in part2 with part1. Does not require the parts to be physically touching. Typically used to make players touch another part.
+
+## Load Instances From XML
+```lua
+array<Object> load_instances_from_xml(string xml)
+```
+Similar to GetObjects but takes XML instead (also works with the binary format).
+
+## Proto Execute
+```lua
+void proto_execute(string code)
+```
+Executes passed code as if it were executed by the user from the UI.
+
+## Lua U Detection
+```lua
+bool is_luau(<none>)
+```
+Returns true if the game is Lua U enabled.
+
+## Get Lua U namecall.
+```lua
+Variant<string, nil> get_namecall_method(<none>)
+```
+Returns the method name for use in namecall functions. Will return nil when LuaU is not enabled for the game.
+!!! note
+ This is typically used for namecall hooks on the metatable to get the namecall method.
+
+## Get Hidden Properties
+```lua
+Variant get_hidden_prop(Object inst, string property)
+```
+Allows you to get the value of properties, including ones that are not normally accessible by lua.
+!!! example
+ ```lua
+  get_hidden_prop(workspace.Union, "AssetId") -> "http://roblox.com/asset?id=1818"
+  ```
+## Http Request
+ ```lua
+ Dictionary<string, Variant> http_request(Dictionary options)
+ ```
+ Re-implementation of HttpService:RequestAsync on the client side. Documentation is here: https://developer.roblox.com/en-us/api-reference/function/HttpService/RequestAsync
+
+## Ask Prompt
+```lua
+int ask_prompt(string title, string contents, string option1[, string option2])
+```
+Opens a prompt in the UI with the information specificed. Can have 1 or 2 options. Return is based on what button was clicked, 1 being option 1, 2 being option 2.
+
+## Teleport Queue
+```lua
+Variant queue_for_teleport(string source)
+```
+Adds the given source code to a queue, which will be executed upon teleporting. Will return false and a string when the source code has a syntax error, otherwise it will return true.
+
+## Clear Queue
+```lua
+void clear_teleport_queue(<none>)
+```
+Clears the teleport execution queue.
+
+## Easter Egg: Get Wally
+```lua
+Dictionary<property, boolean> getwally(<none>)
+```
+Returns a dictionary of certain properties and whether wally has it or no.
